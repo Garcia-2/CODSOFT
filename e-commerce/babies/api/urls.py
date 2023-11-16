@@ -5,5 +5,6 @@ from .views import home
 
 urlpatterns = [
     path('', home),
-    path('category', include('api.category.urls'))
+    path('category', include('api.category.urls')),
+    path('products', include('api.products.urls')),
 ]
