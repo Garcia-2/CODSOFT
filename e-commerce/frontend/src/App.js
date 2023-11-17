@@ -1,9 +1,28 @@
 import './App.css';
+import {Routes, Route} from 'react-router-dom'
+import Home from './components/home';
+import About from './components/About';
+import Create from './components/Create';
+import NavBar from './components/NavBar';
 
 function App() {
+  const myWidth = 210
   return (
     <div className="App">
-      <div>Kid Drip</div>
+      <NavBar 
+          drawerWidth={myWidth}
+          content = {
+
+            <Routes>
+                <Route path="" element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/create" element={<Create/>}/>
+            </Routes>
+
+          }
+      
+      />
+      
     </div>
   );
 }
