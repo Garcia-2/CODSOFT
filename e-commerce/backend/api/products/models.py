@@ -1,5 +1,6 @@
 from django.db import models
 from api.category.models import Category
+from api.user.models import User
 
 # Create your models here.
 class Product(models.Model):
@@ -13,6 +14,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return f"{self.name}"
