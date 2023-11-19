@@ -15,10 +15,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import CreateIcon from '@mui/icons-material/Create';
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton } from '@mui/material'; 
+import { IconButton } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { useAuth } from '../AuthContext';
 // import IconButton from '@mui/material/IconButton';
 
 export default function NavBar(props) {
+  const { authenticated, logout } = useAuth();
+  console.log('Authenticated:', authenticated);
   const {drawerWidth, content} = props
   const location = useLocation()
   const path = location.pathname
@@ -61,12 +66,41 @@ export default function NavBar(props) {
                   <ListItemText primary={"Create"} />
                 </ListItemButton>
               </ListItem>
-           
-          </List>
-          
-        </Box>
+
+              {authenticated ? (
+                <ListItem disablePadding key="logout">
+                  <ListItemButton onClick={logout}>
+                    <ListItemIcon>
+                      <HowToRegIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={"Logout"} />
+                  </ListItemButton>
+                </ListItem>
+              ) : (
+                [
+                  <ListItem disablePadding key="login">
+                    <ListItemButton component={Link} to="/login" selected={"/login" === path}>
+                      <ListItemIcon>
+                        <LoginIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={"Login"} />
+                    </ListItemButton>
+                  </ListItem>,
+
+                  <ListItem disablePadding key="register">
+                    <ListItemButton component={Link} to="/register" selected={"/register" === path}>
+                      <ListItemIcon>
+                        <HowToRegIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={"Register"} />
+                    </ListItemButton>
+                  </ListItem>
+                ]
+              )}
+        </List>
+      </Box>
     </div>
-  )
+  );
 
   return (
     <Box sx={{ display: 'flex' }}>
