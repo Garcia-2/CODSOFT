@@ -3,20 +3,21 @@ import { useForm } from 'react-hook-form';
 import { Button, TextField, Typography, Snackbar } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useAuth } from '../../AuthContext'; // Import the useAuth hook
+// import axios from 'axios';
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
-
+  const { login } = useAuth(); // Use the login function from the context
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:8000/api/user/login/', data);
-      console.log(response.data);
+      // Instead of directly making an API call, call the login function from the context
+      await login(data.username, data.password);
       setOpenSnackbar(true);
-      navigate('/');  
+      navigate('/');
     } catch (error) {
       console.error(error);
       setOpenSnackbar(true);

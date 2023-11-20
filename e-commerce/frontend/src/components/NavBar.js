@@ -13,13 +13,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
-import CreateIcon from '@mui/icons-material/Create';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import { useAuth } from '../AuthContext';
-// import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function NavBar(props) {
   const { authenticated, logout } = useAuth();
@@ -59,11 +60,20 @@ export default function NavBar(props) {
               </ListItem>
 
               <ListItem disablePadding>
-                <ListItemButton component={Link} to="/create" selected={"/create" === path}>
+                <ListItemButton component={Link} to="/cart" selected={"/cart" === path}>
                   <ListItemIcon>
-                        <CreateIcon/>
+                        <ShoppingCartIcon/>
                   </ListItemIcon>
-                  <ListItemText primary={"Create"} />
+                  <ListItemText primary={"Cart"} />
+                </ListItemButton>
+              </ListItem>
+
+              <ListItem disablePadding>
+                <ListItemButton component={Link} to="/checkout" selected={"/checkout" === path}>
+                  <ListItemIcon>
+                        <PointOfSaleIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary={"Checkout"} />
                 </ListItemButton>
               </ListItem>
 
@@ -71,7 +81,7 @@ export default function NavBar(props) {
                 <ListItem disablePadding key="logout">
                   <ListItemButton onClick={logout}>
                     <ListItemIcon>
-                      <HowToRegIcon />
+                      <LogoutIcon />
                     </ListItemIcon>
                     <ListItemText primary={"Logout"} />
                   </ListItemButton>
