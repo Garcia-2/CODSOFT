@@ -136,7 +136,7 @@ export default function NavBar(props) {
       <Drawer
         variant="permanent"
         sx={{
-          disaplay: {xs:"none", sm:"block"},
+          display: {xs:"none", sm:"block"},
           width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
@@ -151,7 +151,7 @@ export default function NavBar(props) {
         open = {open}
         onClose={changeOpenStatus}
         sx={{
-          disaplay: {xs:"block", sm:"none"},
+          display: {xs:"block", sm:"none"},
           width: drawerWidth,
           flexShrink: 0,
           [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
