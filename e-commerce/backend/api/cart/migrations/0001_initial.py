@@ -8,17 +8,15 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('products', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name='Cart',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=500)),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
+                ('products', models.ManyToManyField(to='products.product')),
             ],
         ),
     ]

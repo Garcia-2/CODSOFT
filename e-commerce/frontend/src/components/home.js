@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './Home.css';
+// import ProductDetail from './ProductDetail';
 
 const Home = () => {
   // State to store the products
@@ -46,18 +48,16 @@ const Home = () => {
       <h1>All Products</h1>
       {products.map((product) => (
         <div key={product.id} className="product-card poduct-card-default">
-          <div className="image-container">
-            {product.image && <img src={product.image} alt={product.name} className="product-image" />}
-          </div>
-          <h3 className="product-name">{product.name}</h3>
-          {/*product.category ? (
-            <p className="product-category">Category: {product.category}</p>
-          ) : (
-            <p Name="no-category">No category assigned</p>
-          )*/}
-          {/*<p className="product-description">{product.description}</p>*/}
-          <p className="product-price">Price: ${product.price}</p>
-          {/*<p className="product-stock">Stock: {product.stock}</p>}*/}
+          <Link to={`/products/${product.id}`}>
+            <div className="image-container">
+              {product.image && <img src={product.image}
+              alt={product.name}
+              className="product-image" />}
+            </div>
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-price">Price: ${product.price}</p>
+          </Link>
+          {/* <ProductDetail productId={product.id}/> */}
         </div>
       ))}
     </div>

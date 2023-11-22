@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'api',
     'api.category',
     'api.products',
+    'api.user',
+    'api.cart',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +158,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+AUTH_USER_MODEL = 'user.User'

@@ -21,11 +21,10 @@ import { useAuth } from '../AuthContext';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import LogoutIcon from '@mui/icons-material/Logout';
+import CartCount from './CartCount';
 
-export default function NavBar(props) {
+export default function NavBar({ drawerWidth, content, cartItems }) {
   const { authenticated, logout } = useAuth();
-  console.log('Authenticated:', authenticated);
-  const {drawerWidth, content} = props
   const location = useLocation()
   const path = location.pathname
 
@@ -129,6 +128,11 @@ export default function NavBar(props) {
           <Typography variant="h6" noWrap component="div">
             Kid Drip
           </Typography>
+          <Link to="/cart" style={{ textDecoration: "none", color: "white" }}>
+            <Typography variant="h6" noWrap component="div" sx={{ ml: 2 }}>
+              Cart <CartCount cartItems={cartItems} />
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
 
