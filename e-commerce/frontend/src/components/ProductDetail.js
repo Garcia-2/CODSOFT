@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useCart } from './CartContext';
+import "./Home.css";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -41,12 +42,14 @@ const ProductDetail = () => {
         <div className="detail-image-container">
           {product.image && <img src={product.image} alt={product.name} className="detail-image" />}
         </div>
-        <h2 className="detail-name">{product.name}</h2>
-        <p className="detail-category">Category: {category}</p>
-        <p className="detail-description">Description: {product.description}</p>
-        <p className="detail-price">Price: ${product.price}</p>
-        <p className="detail-stock">Stock: {product.stock}</p>
-        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+        <div className="detail-items">
+            <h2 className="detail-name">{product.name}</h2>
+            <p className="detail-category">Category: {category}</p>
+            <p className="detail-description">Description: {product.description}</p>
+            <p className="detail-price">Price: ${product.price}</p>
+            <p className="detail-stock">Stock: {product.stock}</p>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+        </div>
       </div>
     </div>
   );

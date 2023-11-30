@@ -27,23 +27,27 @@ const cartReducer = (state, action) => {
 export const CartProvider = ({ children }) => {
   const [cartState, dispatch] = useReducer(cartReducer, { cartItems: [] });
 
-  // Load cart data from localStorage
+ 
+  // Load cart data from localStorage when the component mounts
   useEffect(() => {
-    console.log('Loading cart data from localStorage');
-    const savedCart = localStorage.getItem('cart');
+    console.log('useEffect running...');
+    console.log('Loading cart data...');
+    const savedCart = localStorage.getItem('cart') || sessionStorage.getItem('cart');
+    console.log('Saved cart data:', savedCart);
     if (savedCart) {
       dispatch({ type: 'SET_CART', payload: JSON.parse(savedCart) });
     }
   }, []);
 
-  // Save cart data to localStorage whenever the cart state changes
+  // Save cart data to both localStorage and sessionStorage whenever the cart state changes
   useEffect(() => {
-    console.log('Saving cart data to localStorage');
-    localStorage.setItem('cart', JSON.stringify(cartState.cartItems));
+    const cartData = JSON.stringify(cartState.cartItems);
+    localStorage.setItem('cart', cartData);
+    sessionStorage.setItem('cart', cartData);
   }, [cartState]);
 
   const addToCart = useCallback((product) => {
-    console.log('Adding to cart:', product);
+    console.log('Adding to cart:', product);  
     dispatch({ type: 'ADD_TO_CART', payload: product });
   }, [dispatch]);
 
